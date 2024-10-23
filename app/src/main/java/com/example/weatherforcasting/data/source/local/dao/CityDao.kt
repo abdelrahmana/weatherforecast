@@ -10,7 +10,8 @@ import com.example.weatherforcasting.data.model.City
 interface CityDao {
     @Query("SELECT * FROM City")
     suspend fun getAll(): List<City>
-
+    @Query("SELECT * FROM City WHERE id = :id")
+    suspend fun getCityById(id: Int): City?
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertCity(user: City)
 
